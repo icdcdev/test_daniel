@@ -1,0 +1,46 @@
+useDotenv: true
+
+service: date
+frameworkVersion: '4'
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+  profile: default
+  stage: ${opt:stage, 'dev'}
+  environment:
+    REGION: ${self:provider.region}
+    STAGE: ${self:provider.stage}
+    COGNITO_CLIENT_ID:
+      Ref: CognitoUserPoolClient
+  # httpApi:
+  #   authorizers:
+  #     cognitoJwtAuthorizer:
+  #       identitySource: $request.header.Authorization
+  #       issuerUrl: https://cognito-idp.${self:provider.region}.amazonaws.com/${cf:baz-authorizer-${sls:stage}.UserPoolId}
+  #       audience:
+  #         - ${cf:baz-authorizer-${sls:stage}.UserPoolClientId}
+
+custom:
+  serverless-offline:
+    noPrependStageInUrl: true
+    prefix: ''
+    watch: true
+  dotenv:
+    basePath: ./../../
+    logging: false
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+functions:
+  postDate:
+    handler: interface/http/postDate.handler
+    events:
+      - httpApi:
+          path: /
+          method: post
+          # authorizer: 
+          #   name: cognitoJwtAuthorizer

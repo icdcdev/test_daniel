@@ -1,0 +1,24 @@
+import { ConflictException } from "../../../shared/utils/exceptions";
+import { UserRepository } from "../../../user/intraestructure/persistence/user.repository";
+import { DatesRepository } from "../../infraestructure/persistence/dates.repository.entity";
+import { CreateDateDto } from "../dto/dates.dto";
+
+export class CreateDateUseCase {
+
+    static async execute(dto: CreateDateDto) {
+
+        const user = await UserRepository.findById(dto.userId);
+
+        if(!user)
+            throw new ConflictException('User does not exist');
+
+        const existingDate = await DatesRepository.findDatesByDate(new Date(dto.date), 1);
+
+        if(!existingDate.length) {
+            throw new ConflictException('Date already exists within the specified range of hours');
+        }
+
+        return await DatesRepository.save(dto, user);
+    }
+
+}
