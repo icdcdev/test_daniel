@@ -19,7 +19,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
 
         const response = await CreateUserUseCase.execute(dto);
 
-        return Response.Ok(response);
+        return Response.Created(response);
     }
     catch (error) {
         

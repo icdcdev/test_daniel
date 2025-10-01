@@ -3,6 +3,7 @@ import { DataSource } from "typeorm";
 import * as dotenv from "dotenv";
 import path from "node:path";
 import { UserEntity } from "../../user/domain/entities/user.entity";
+import { DatesEntity } from "../../dates/domain/entities/dates.entity";
 dotenv.config();
 
 const host: string = process.env.DB_HOST;
@@ -20,7 +21,8 @@ export const AppDataSource = new DataSource({
   database,
   synchronize: false,
   entities: [
-    UserEntity
+    UserEntity,
+    DatesEntity
   ],
   migrations: [
     path.join(__dirname, "./migrations/*.{ts,js}")
