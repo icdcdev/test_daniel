@@ -1,0 +1,7 @@
+services:
+  auth:
+    path: src/auth/serverless.yml
+    name: auth-${opt:stage, 'dev'}
+  user:
+    path: src/user/serverless.yml
+    name: user-${opt:stage, 'dev'}

@@ -1,0 +1,6 @@
+.env
+node_modules
+src/**/.serverless
+.serverless
+package-lock.json
+yarn.lock
