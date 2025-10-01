@@ -49,6 +49,8 @@ export class DatesRepository {
             qb.andWhere('dates.status = :status', { status: DateStatusEnum.ENABLED });
         }
 
+        qb.orderBy('dates.date', 'ASC');
+
         
         return await qb.getMany();
     }

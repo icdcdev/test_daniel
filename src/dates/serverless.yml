@@ -44,3 +44,11 @@ functions:
           method: post
           # authorizer: 
           #   name: cognitoJwtAuthorizer
+  getDates:
+    handler: interface/http/getDates.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+          # authorizer: 
+          #   name: cognitoJwtAuthorizer
