@@ -1,5 +1,6 @@
-import { BaseEntity, Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { DatesEntity } from '../../../dates/domain/entities/dates.entity';
+import { VehicleEntity } from "../../../vehicles/domain/entities/vechile.entity";
 
 export enum UserRoleEnum {
     CLIENT='CLIENT',
@@ -41,5 +42,8 @@ export class UserEntity extends BaseEntity{
 
     @OneToMany(() => DatesEntity, date => date.user)
     dates: DatesEntity[];
+
+    @OneToMany(() => VehicleEntity, vehicle => vehicle.owner)
+    vehicles: VehicleEntity[];
 
 }
