@@ -1,5 +1,6 @@
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UserEntity } from "../../../user/domain/entities/user.entity";
+import { DatesEntity } from "../../../dates/domain/entities/dates.entity";
 
 @Entity({name: 'vehicles'})
 export class VehicleEntity extends BaseEntity {
@@ -24,4 +25,7 @@ export class VehicleEntity extends BaseEntity {
     @ManyToOne(() => UserEntity, user => user.vehicles)
     @JoinColumn()
     owner: UserEntity;
+
+    @OneToMany(() => DatesEntity, date => date.vehicle)
+    dates: DatesEntity[];
 }

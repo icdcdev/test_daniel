@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { DatesEntity } from '../../../dates/domain/entities/dates.entity';
 import { VehicleEntity } from "../../../vehicles/domain/entities/vechile.entity";
 

@@ -11,7 +11,7 @@
     "ignoreDeprecations": "6.0",
     "lib": ["es2015"],
     "types": ["node"],
-    "rootDir": "./",
+    "rootDir": "../../",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   }

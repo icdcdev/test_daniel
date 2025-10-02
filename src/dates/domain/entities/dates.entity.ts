@@ -1,5 +1,6 @@
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { UserEntity } from "../../../user/domain/entities/user.entity";
+import { VehicleEntity } from "../../../vehicles/domain/entities/vechile.entity";
 
 export enum DateStatusEnum {
     ENABLED='ENABLED',
@@ -30,5 +31,9 @@ export class DatesEntity extends BaseEntity{
     @ManyToOne(() => UserEntity, user => user.dates)
     @JoinColumn()
     user: UserEntity;
+
+    @ManyToOne(() => VehicleEntity, vehicle => vehicle.id)
+    @JoinColumn()
+    vehicle: VehicleEntity;
 
 }
