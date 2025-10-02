@@ -3,7 +3,7 @@ import { DatesRepository } from "../../infraestructure/persistence/dates.reposit
 export class FindDatesByDateUseCase {
 
     static async execute(date: Date) {
-        return await DatesRepository.findDatesByDate(date);
+        return await DatesRepository.findDates(date);
     }
     
 }

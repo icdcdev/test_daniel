@@ -20,9 +20,6 @@ export class CreateDateDto {
 }
 
 export class UpdateDateDto {
-    @IsNumber()
-    id: number;
-
     @IsOptional()
     @IsDateString()
     date?: string;

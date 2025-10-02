@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class  $npmConfigName1759364648921 implements MigrationInterface {
-    name = ' $npmConfigName1759364648921'
+export class  $npmConfigName1759365463888 implements MigrationInterface {
+    name = ' $npmConfigName1759365463888'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "vehicles" ("id" SERIAL NOT NULL, "vin" character varying NOT NULL, "year" character varying NOT NULL, "model" character varying NOT NULL, "plates" character varying NOT NULL, "color" character varying NOT NULL, "ownerId" integer, CONSTRAINT "UQ_8288ce015b69c5856cf54e07a67" UNIQUE ("vin"), CONSTRAINT "UQ_db5f28cb0044406c03fe993cf82" UNIQUE ("plates"), CONSTRAINT "PK_18d8646b59304dce4af3a9e35b6" PRIMARY KEY ("id"))`);
