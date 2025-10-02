@@ -7,9 +7,6 @@ import { FindDatesByDateUseCase } from '../../application/usecases/find.usecase'
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent, context: Context) => {
 
     try {
-        if(!event.body) {
-            return Response.BadRequest({message: 'Bad Request: Body is required'});
-        }
         
         const date = event.queryStringParameters?.date;
 

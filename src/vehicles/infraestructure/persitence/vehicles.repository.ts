@@ -24,7 +24,12 @@ export class VehiclesRepository {
         vehicle.color = dto.color;
         vehicle.owner = user;
 
-        return await VehicleEntity.save(vehicle);
+        const savedVehicle = await VehicleEntity.save(vehicle);
+
+        delete savedVehicle.owner.password;
+        
+        return savedVehicle;
+
     }
 
     static async findByVin(vin: string) : Promise<VehicleEntity | null> {

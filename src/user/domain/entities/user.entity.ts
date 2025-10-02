@@ -6,7 +6,6 @@ export enum UserRoleEnum {
     CLIENT='CLIENT',
     ADMIN='ADMIN'
 }
-
 @Entity({name: 'users'})
 export class UserEntity extends BaseEntity{
 
