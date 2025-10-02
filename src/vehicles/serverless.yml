@@ -27,6 +27,8 @@ custom:
     noPrependStageInUrl: true
     prefix: ''
     watch: true
+    httpPort: 3003
+    lambdaPort: 4003
   dotenv:
     basePath: ./../../
     logging: false

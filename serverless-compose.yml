@@ -5,3 +5,9 @@ services:
   user:
     path: src/user/serverless.yml
     name: user-${opt:stage, 'dev'}
+  vehicles:
+    path: src/vehicles/serverless.yml
+    name: vehicles-${opt:stage, 'dev'}
+  dates:
+    path: src/dates/serverless.yml
+    name: dates-${opt:stage, 'dev'}

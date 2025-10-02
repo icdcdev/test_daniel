@@ -7,6 +7,7 @@
     "@types/aws-lambda": "^8.10.153",
     "@types/node": "^24.6.1",
     "aws-sdk": "^2.1692.0",
+    "concurrently": "^9.2.1",
     "esbuild": "^0.25.10",
     "serverless-dotenv-plugin": "^6.0.0",
     "serverless-esbuild": "^1.55.1",
@@ -26,6 +27,7 @@
     "typeorm": "^0.3.27"
   },
   "scripts": {
+    "offline:all": "concurrently \"cd src/auth && serverless offline\" \"cd src/user && serverless offline\" \"cd src/vehicles && serverless offline\" \"cd src/dates && serverless offline\"",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d src/shared/db/connection.ts",
     "migrations:generate": "npm run typeorm -- migration:generate src/shared/db/migrations/$npm_config_name",
     "migrations:run": "npm run typeorm -- migration:run",
