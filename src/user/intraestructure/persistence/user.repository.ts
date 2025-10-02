@@ -16,6 +16,7 @@ export class UserRepository {
         user.name = dto.name;
         user.lastName = dto.lastName;
         user.role = dto.role;
+        user.timezone = dto.timezone;
 
         return await UserEntity.save(user);
 

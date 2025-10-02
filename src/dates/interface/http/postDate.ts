@@ -3,8 +3,8 @@ import Response from '../../../shared/utils/response';
 import { APIGatewayProxyHandler, APIGatewayProxyEvent } from 'aws-lambda';
 import { CustomException } from '../../../shared/utils/exceptions';
 import { validateDto } from '../../../shared/utils/validateDto';
-import { CreateUserDto } from '../../application/dto/user.dto';
-import { CreateUserUseCase } from '../../application/use-cases/create.usecase';
+import { CreateDateDto } from '../../application/dto/dates.dto';
+import { CreateDateUseCase } from '../../application/usecases/create.usecase';
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent, context: Context) => {
 
@@ -15,9 +15,9 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
         
         const body = JSON.parse(event.body);
 
-        const dto = await validateDto(CreateUserDto, body)
+        const dto = await validateDto(CreateDateDto, body)
 
-        const response = await CreateUserUseCase.execute(dto);
+        const response = await CreateDateUseCase.execute(dto);
 
         return Response.Created(response);
     }

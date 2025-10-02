@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { DatesEntity } from '../../../dates/domain/entities/dates.entity';
 
 export enum UserRoleEnum {
     CLIENT='CLIENT',
@@ -29,10 +30,16 @@ export class UserEntity extends BaseEntity{
     @Column({ type: 'enum', enum: UserRoleEnum , default: UserRoleEnum.CLIENT })
     role: UserRoleEnum;
 
+    @Column({type: 'varchar'})
+    timezone: string;
+
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt: Date;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
     updatedAt: Date;
+
+    @OneToMany(() => DatesEntity, date => date.user)
+    dates: DatesEntity[];
 
 }

@@ -18,4 +18,8 @@ export class CreateUserDto {
     @IsEnum(UserRoleEnum)
     role: UserRoleEnum;
 
+    @IsString()
+    @IsEnum(Intl.DateTimeFormat().resolvedOptions().timeZone.constructor as any)
+    timezone: string;
+
 }

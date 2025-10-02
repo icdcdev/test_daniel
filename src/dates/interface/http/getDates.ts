@@ -2,9 +2,7 @@ import { Context } from 'vm';
 import Response from '../../../shared/utils/response';
 import { APIGatewayProxyHandler, APIGatewayProxyEvent } from 'aws-lambda';
 import { CustomException } from '../../../shared/utils/exceptions';
-import { validateDto } from '../../../shared/utils/validateDto';
-import { CreateUserDto } from '../../application/dto/user.dto';
-import { CreateUserUseCase } from '../../application/use-cases/create.usecase';
+import { FindDatesByDateUseCase } from '../../application/usecases/find.usecase';
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent, context: Context) => {
 
@@ -13,13 +11,15 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
             return Response.BadRequest({message: 'Bad Request: Body is required'});
         }
         
-        const body = JSON.parse(event.body);
+        const date = event.queryStringParameters?.date;
 
-        const dto = await validateDto(CreateUserDto, body)
+        if(!date || isNaN(Date.parse(date))) {
+            return Response.BadRequest('date query parameter is required and must be a valid date');
+        }
 
-        const response = await CreateUserUseCase.execute(dto);
+        const response = await FindDatesByDateUseCase.execute(new Date(date));
 
-        return Response.Created(response);
+        return Response.Ok(response);
     }
     catch (error) {
         
