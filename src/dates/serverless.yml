@@ -52,3 +52,12 @@ functions:
           method: get
           # authorizer: 
           #   name: cognitoJwtAuthorizer
+  patchDate:
+    handler: interface/http/patchDate.handler
+    events:
+      - httpApi:
+          path: /{id}
+          method: patch
+          # authorizer: 
+          #   name: cognitoJwtAuthorizer
+

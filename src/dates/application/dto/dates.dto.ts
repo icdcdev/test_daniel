@@ -1,4 +1,6 @@
-import { IsDateString, IsNumber, IsString } from "class-validator";
+import { IsDateString, IsEnum, IsNumber, IsString } from "class-validator";
+import { IsOptional } from "class-validator";
+import { DateStatusEnum } from "../../domain/entities/dates.entity";
 
 
 export class CreateDateDto {
@@ -15,4 +17,21 @@ export class CreateDateDto {
     @IsNumber()
     vehicleId: number;
 
+}
+
+export class UpdateDateDto {
+    @IsNumber()
+    id: number;
+
+    @IsOptional()
+    @IsDateString()
+    date?: string;
+
+    @IsOptional()
+    @IsString()
+    comments?: string;
+
+    @IsOptional()
+    @IsEnum(DateStatusEnum)
+    status?: DateStatusEnum;
 }

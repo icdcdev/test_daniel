@@ -12,10 +12,10 @@ export class CreateDateUseCase {
         if(!user)
             throw new ConflictException('User does not exist');
 
-        const existingDate = await DatesRepository.findDatesByDate(new Date(dto.date), 1);
+        const existingDate = await DatesRepository.findDatesByDate(new Date(dto.date), 29);
 
         if(!existingDate.length) {
-            throw new ConflictException('Date already exists within the specified range of hours');
+            throw new ConflictException('Date already exists within the specified range of minutes');
         }
 
         return await DatesRepository.save(dto, user);
