@@ -62,7 +62,7 @@ Por defecto el stage es "dev" para desplegar a un stage especifico
 ## Pruebas en local
 
 ```bash
- yarn offline:all
+ npm run offline:all
 ```
 
 ## Pruebas en local por stack
